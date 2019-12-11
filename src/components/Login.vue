@@ -21,7 +21,6 @@
             </div>
             <div>
                  <button class="btn btn-primary" v-on:click="doLogin">Sign in</button>
-                 <a href="/register">Registration</a>
             </div>
        </div>
 </div>
@@ -29,13 +28,15 @@
 
 <script>
 import axios from 'axios'
+import Test from './Test'
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      token: ''
     }
   },
   methods: {
@@ -46,7 +47,9 @@ export default {
       }
       axios.post('http://localhost:8080/api/auth/login', data)
         .then(response => {
-          this.$router.push({name: 'Main'})
+          console.log(response.data.accessToken);
+          localStorage.setItem('accessToken', response.data.accessToken);
+          this.$router.push({name: 'Test'})
         })
     }
   }

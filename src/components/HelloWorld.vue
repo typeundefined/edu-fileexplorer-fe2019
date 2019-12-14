@@ -1,6 +1,17 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>Войдите</h2>
+    <ul>
+      <li>
+        <a
+          href="http://localhost:7070/#/login"
+          target="_self"
+        >
+          Вход
+        </a>
+      </li>
+    </ul>
     <h2>Essential Links</h2>
     <ul>
       <li>

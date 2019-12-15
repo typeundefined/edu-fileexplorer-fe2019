@@ -27,16 +27,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Test from './Test'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data () {
     return {
       username: '',
-      password: '',
-      token: ''
+      password: ''
     }
   },
   methods: {
@@ -45,11 +42,10 @@ export default {
         username: this.username,
         password: this.password
       }
-      axios.post('http://localhost:8080/api/auth/login', data)
+      this.$axios.post('http://localhost:8080/api/auth/login', data)
         .then(response => {
-          console.log(response.data.accessToken);
-          localStorage.setItem('accessToken', response.data.accessToken);
-          this.$router.push({name: 'Test'})
+          localStorage.setItem('accessToken', response.data.accessToken)
+          this.$router.push({name: 'Main'})
         })
     }
   }

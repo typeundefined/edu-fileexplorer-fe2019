@@ -16,24 +16,25 @@ var app = new Vue({
   template: '<App/>'
 })
 
+axios.interceptors.request.use(
+  config => {
+    var token = localStorage.getItem('accessToken')
+    if (token) {
+      config.headers['Auth-token'] = `Bearer ${token}`
+    }
+    return config
+  },
+  error => { Promise.reject(error) }
+)
+
 axios.interceptors.response.use(
   response => response,
   error => {
     if (error.response.status === 401) {
+      localStorage.removeItem('accessToken')
       app.$router.push({name: 'Login'})
     } else {
       return Promise.reject(error)
     }
   })
 
-// TODO debug me
-//axios.interceptors.request.use(
-  //config => {
-    //var token = localStorage.getItem('accessToken')
-    //if (token) {
-      //config.headers.Authorization = `Bearer ${token}`
-    //}
-    //return config
-  //},
-  //error => { Promise.reject(error) }
-//)

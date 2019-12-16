@@ -8,14 +8,6 @@ import axios from 'axios'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
-/* eslint-disable no-new */
-var app = new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
-
 axios.interceptors.request.use(
   function (config) {
     var token = localStorage.getItem('accessToken')
@@ -34,8 +26,16 @@ axios.interceptors.response.use(
   function (error) {
     if (error.response.status === 401) {
       localStorage.removeItem('accessToken')
-      app.$router.push({name: 'Login'})
+      router.push({name: 'Login'})
     } else {
       return Promise.reject(error)
     }
   })
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})

@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-      <file-item v-for="{name, href} in files" :key="name"
+      <file-item v-for="{name, _links} in files" :key="name"
         :name = "name"
-        :url = "href._self"
+        :url = "_links.self.href"
       />
   </div>
 </template>

@@ -1,5 +1,10 @@
 <template>
   <div class="hello">
+      <div class="card">
+        <div class="card-body">
+          <router-link to="/">Go to Manager</router-link>
+        </div>
+      </div>
       <file-item v-for="{name, _links} in files" :key="name"
         :name = "name"
         :url = "_links.self.href"
@@ -26,7 +31,7 @@ export default {
       this.$axios.get('http://localhost:8080/api/directory')
         .then(response => {
           this.files = response.data.files
-          this.directories = response.data.directories
+          this.directories = response.data.subDirectories
         })
     }
   },

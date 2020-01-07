@@ -13,6 +13,7 @@ export default {
   name: 'FileItem',
   props: ['name', 'url'],
   data () {
+    return {}
   },
   methods: {
   }

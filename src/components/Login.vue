@@ -45,7 +45,7 @@ export default {
       this.$axios.post('http://localhost:8080/api/auth/login', data)
         .then(response => {
           localStorage.setItem('accessToken', response.data.accessToken)
-          this.$router.push({name: 'Main'})
+          this.$router.push({name: 'Manager'})
         })
     }
   }
